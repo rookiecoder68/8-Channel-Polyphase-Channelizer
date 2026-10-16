@@ -1,0 +1,7 @@
+[00000.000000] 
+[00000.000013]  /----------------------------------------------------------------------------\
+[00000.000013]  |  yosys -- Yosys Open SYnthesis Suite                                       |
+[00000.000014]  |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+[00000.000014]  |  Distributed under an ISC-like license, type "license" to see terms        |
+[00000.000015]  \----------------------------------------------------------------------------/
+[00000.000015]  Yosys 0.69+190 (git sha1 0e8336b4e, Release, Clang /usr/bin/clang++ 21.1.8)

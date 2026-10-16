@@ -1,0 +1,27 @@
+# 1. Read SystemVerilog RTL
+read_verilog -sv rtl/input_buffer.sv
+read_verilog -sv rtl/folded_fir.sv
+read_verilog -sv rtl/fft_8point_pipelined.sv
+read_verilog -sv rtl/channelizer_top.sv
+
+# 2. Advanced Macro Synthesis
+# Automatically runs 'alumacc' to build fast multiplier trees and completely flattens the hierarchy
+synth -top channelizer_top -flatten
+
+# 3. Sanitize Netlist
+# Strips escaped SystemVerilog array characters into identifiers accepted by OpenSTA
+opt_clean -purge
+rename -unescape
+
+# 4. Technology Mapping to Nangate 45nm
+dfflibmap -liberty NangateOpenCellLibrary_typical.lib
+abc -D 8000 -liberty NangateOpenCellLibrary_typical.lib
+
+# 5. Cleanup and Export
+clean -purge
+stat -liberty NangateOpenCellLibrary_typical.lib
+
+# Export a clean netlist with simple assignment left-hand sides.
+# The OpenSTA version used by this project does not accept concatenations
+# on assignment left-hand sides.
+write_verilog -noattr -noexpr -nohex -simple-lhs synth_nangate_netlist.v

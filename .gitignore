@@ -1,0 +1,11 @@
+# Generated simulator executable
+tb/mysim
+
+# Python cache and local plotting/runtime files
+__pycache__/
+*.py[cod]
+
+# Common editor and OS files
+.vscode/
+.idea/
+.DS_Store

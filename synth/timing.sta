@@ -1,0 +1,25 @@
+# 1. Load Nangate 45nm Library and Synthesized Netlist
+read_liberty NangateOpenCellLibrary_typical.lib
+read_verilog synth_nangate_netlist.v
+link_design channelizer_top
+
+# 2. Apply SDC Constraints
+read_sdc constraints.sdc
+
+# 3. Report Setup and Hold Timing
+puts "\n=================================================="
+puts "                SETUP TIMING REPORT"
+puts "=================================================="
+report_checks -path_delay max -format full
+
+puts "\n=================================================="
+puts "                HOLD TIMING REPORT"
+puts "=================================================="
+report_checks -path_delay min -format full
+
+# 4. Report Global Summary
+puts "\n=================================================="
+puts "                TIMING SUMMARY"
+puts "=================================================="
+report_wns
+report_tns

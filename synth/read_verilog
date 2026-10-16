@@ -1,0 +1,37 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.69+190 (git sha1 0e8336b4e, Release, Clang /usr/bin/clang++ 21.1.8)
+
+-- Parsing `rtl/channelizer_top.sv' using frontend ` -sv' --
+
+1. Executing Verilog-2005 frontend: rtl/channelizer_top.sv
+Parsing SystemVerilog input from `rtl/channelizer_top.sv' to AST representation.
+Storing AST representation for module `$abstract\channelizer_top'.
+Successfully finished Verilog frontend.
+
+-- Parsing `rtl/fft_8point_pipelined.sv' using frontend ` -sv' --
+
+2. Executing Verilog-2005 frontend: rtl/fft_8point_pipelined.sv
+Parsing SystemVerilog input from `rtl/fft_8point_pipelined.sv' to AST representation.
+Storing AST representation for module `$abstract\fft_8point_pipelined'.
+Successfully finished Verilog frontend.
+
+-- Parsing `rtl/folded_fir.sv' using frontend ` -sv' --
+
+3. Executing Verilog-2005 frontend: rtl/folded_fir.sv
+Parsing SystemVerilog input from `rtl/folded_fir.sv' to AST representation.
+Storing AST representation for module `$abstract\folded_fir'.
+Successfully finished Verilog frontend.
+
+-- Parsing `rtl/input_buffer.sv' using frontend ` -sv' --
+
+4. Executing Verilog-2005 frontend: rtl/input_buffer.sv
+Parsing SystemVerilog input from `rtl/input_buffer.sv' to AST representation.
+Storing AST representation for module `$abstract\input_buffer'.
+Successfully finished Verilog frontend.
+
+-- Executing script file `v' --

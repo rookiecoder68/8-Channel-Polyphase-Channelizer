@@ -1,0 +1,54 @@
+# ==========================================
+# 1. Read SystemVerilog RTL Files
+# ==========================================
+# The -sv flag ensures Yosys parses the modern SystemVerilog syntax
+read_verilog -sv rtl/input_buffer.sv
+read_verilog -sv rtl/folded_fir.sv
+read_verilog -sv rtl/fft_8point_pipelined.sv
+read_verilog -sv rtl/channelizer_top.sv
+
+# ==========================================
+# 2. Elaborate Hierarchy
+# ==========================================
+hierarchy -check -top channelizer_top
+
+# ==========================================
+# 3. High-Level Synthesis & Optimization
+# ==========================================
+# Converts processes/always blocks to multiplexers and flip-flops
+proc
+opt
+# Extracts and optimizes finite state machines
+fsm
+opt
+# Maps memories/arrays to hardware registers
+memory
+opt
+
+# ==========================================
+# 4. Technology Mapping
+# ==========================================
+# Maps internal RTL representations to basic logic gates
+techmap
+opt
+
+# NOTE: If the Inter IIT problem statement provided a specific Nangate 45nm .lib file 
+# (e.g., NangateOpenCellLibrary_typical.lib), uncomment the two lines below and update the path:
+# dfflibmap -liberty path/to/NangateOpenCellLibrary_typical.lib
+# abc -liberty path/to/NangateOpenCellLibrary_typical.lib
+
+# Fallback: If no specific .lib file was provided, use standard generic CMOS gate mapping
+# to extract an accurate relative gate count for the report.
+abc -g cmos2
+
+# ==========================================
+# 5. Cleanup and Reporting
+# ==========================================
+# Removes unused wires and cells
+clean
+
+# Prints the final Results Dashboard containing cell count and estimated area
+stat
+
+# Export the final synthesizable gate-level netlist
+write_verilog synth_netlist.v
